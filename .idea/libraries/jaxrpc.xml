@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jaxrpc">
+    <CLASSES>
+      <root url="jar://D:/Eclipse/plugins/javax.xml.rpc_1.1.0.v201209140446/lib/jaxrpc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

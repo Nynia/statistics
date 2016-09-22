@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="reeco:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ssm-simple.war">
+      <element id="artifact" artifact-name="reeco:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="smproxy_smgp" />
+          <element id="library" level="project" name="axis" />
+          <element id="library" level="project" name="jaxrpc" />
+          <element id="library" level="project" name="saaj" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

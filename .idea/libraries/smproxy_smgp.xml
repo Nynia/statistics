@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="smproxy_smgp">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/ISMP能力开放/SMSAPI 1.5D221 java/java/SMGP/smproxy_smgp.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
