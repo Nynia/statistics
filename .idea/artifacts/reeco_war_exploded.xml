@@ -10,12 +10,12 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.2.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.2.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.2.1.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.2.1.RELEASE" />
@@ -33,16 +33,7 @@
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.1" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.3" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
-          <element id="library" level="project" name="Maven: net.sf.json-lib:json-lib:2.4" />
-          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.0" />
-          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
-          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.5" />
-          <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" />
-          <element id="library" level="project" name="axis" />
-          <element id="library" level="project" name="jaxrpc" />
-          <element id="library" level="project" name="commons-discovery-0.2" />
-          <element id="library" level="project" name="saaj" />
-          <element id="library" level="project" name="smproxy_smgp" />
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

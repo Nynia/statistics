@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="javax.servlet-api-3.0.1">
     <CLASSES>
-      <root url="jar://C:/Program Files/Android/Android Studio/plugins/google-login/lib/javax.servlet-api-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../apache-tomcat-8.5.5/lib/servlet-api.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

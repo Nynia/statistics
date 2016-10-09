@@ -40,13 +40,9 @@
             <javaClientGenerator type="XMLMAPPER" targetPackage="${daoPackage}" targetProject="${targetProject}">
             </javaClientGenerator>
             <!-- table 举例 -->
-            <table tableName="cp_user" enableCountByExample="false"
+            <table tableName="user" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
-            </table>
-            <table tableName="output_list" enableCountByExample="false"
-                   enableUpdateByExample="false" enableDeleteByExample="false"
-                   enableSelectByExample="false" selectByExampleQueryId="false">
             </table>
         </context>
     </generatorConfiguration>
