@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import service.*;
-import utils.FeeResult;
-import utils.QueryResult;
-import utils.spResult;
+import utils.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +33,10 @@ public class adminAction {
     private SubscribeInfoService subscribeInfoService;
     @Resource
     private SubscribeRecordService subscribeRecordService;
+    @Resource
+    private CrSubscribeService crSubscribeService;
+    @Resource
+    private  CrRingService crRingService;
 
     @RequestMapping("/home")
     @ResponseBody
@@ -95,12 +97,126 @@ public class adminAction {
         model.addAttribute("totaluser",subscribeInfoService.getUserCountByServiceId(productid));
         return "detail";
     }
+    @RequestMapping(value = "/ringDetail")
+    @ResponseBody
+    public JSONObject ringDetail(Model model,HttpServletRequest request) {
+        String ringid = request.getParameter("ringid");
+        System.out.println(ringid);
 
+        String begin = request.getParameter("start_date");
+        String end = request.getParameter("end_date");
+
+        List<CrSubscribe> crResultList = new ArrayList<CrSubscribe>();
+        crResultList = crSubscribeService.getSubscribeinGivenTimeByRingid(ringid, begin, end);
+        List<singleRingDetail> singleRingDetailList = new ArrayList<singleRingDetail>();
+        Map<String,singleRingDetail> stringsingleRingDetailMap = new HashMap<String, singleRingDetail>();
+        for (CrSubscribe item: crResultList) {
+            singleRingDetail temp_singlering = null;
+            String downmethod = item.getDownmethod().toString();
+            if (stringsingleRingDetailMap.containsKey(downmethod)) {
+                 temp_singlering = stringsingleRingDetailMap.get(downmethod);
+            }
+            else {
+                temp_singlering = new singleRingDetail(item.getRingid(),item.getRingname(),item.getCpid(),
+                        item.getCpname(),downmethod);
+                temp_singlering.setChannelname(Constants.channelMap.get(downmethod));
+            }
+            switch (Integer.valueOf(item.getAreano().substring(0,4))) {
+                case 1:
+                    temp_singlering.setA1(temp_singlering.getA1()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 2:
+                    temp_singlering.setA2(temp_singlering.getA2()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 3:
+                    temp_singlering.setA3(temp_singlering.getA3()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 4:
+                    temp_singlering.setA4(temp_singlering.getA4()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 5:
+                    temp_singlering.setA5(temp_singlering.getA5()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 6:
+                    temp_singlering.setA6(temp_singlering.getA6()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 7:
+                    temp_singlering.setA7(temp_singlering.getA7()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 8:
+                    temp_singlering.setA8(temp_singlering.getA8()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 9:
+                    temp_singlering.setA9(temp_singlering.getA9()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 10:
+                    temp_singlering.setA10(temp_singlering.getA10()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 11:
+                    temp_singlering.setA11(temp_singlering.getA11()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 12:
+                    temp_singlering.setA12(temp_singlering.getA12()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                case 13:
+                    temp_singlering.setA13(temp_singlering.getA13()+1);
+                    temp_singlering.setTotal(temp_singlering.getTotal() + 1);
+                    break;
+                default:
+                    break;
+            }
+            stringsingleRingDetailMap.put(downmethod,temp_singlering);
+        }
+        JSONArray jsonArray = new JSONArray();
+        for(Map.Entry<String, singleRingDetail> entry:stringsingleRingDetailMap.entrySet()) {
+            singleRingDetail sr = entry.getValue();
+            //singleRingDetailList.add(sr);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("ringid", sr.getRingid());
+            jsonObject.put("ringname", sr.getRingname());
+            jsonObject.put("cpid", sr.getCpid());
+            jsonObject.put("cpname", sr.getCpname());
+            jsonObject.put("a1",sr.getA1());
+            jsonObject.put("a2",sr.getA2());
+            jsonObject.put("a3",sr.getA3());
+            jsonObject.put("a4",sr.getA4());
+            jsonObject.put("a5",sr.getA5());
+            jsonObject.put("a6",sr.getA6());
+            jsonObject.put("a7",sr.getA7());
+            jsonObject.put("a8",sr.getA8());
+            jsonObject.put("a9",sr.getA9());
+            jsonObject.put("a10",sr.getA10());
+            jsonObject.put("a11",sr.getA11());
+            jsonObject.put("a12",sr.getA12());
+            jsonObject.put("a13",sr.getA13());
+            jsonObject.put("total",sr.getTotal());
+            jsonObject.put("channel",sr.getChannelname());
+            jsonArray.add(jsonObject);
+        }
+        JSONObject jsonresult = new JSONObject();
+
+        jsonresult.put("channelinfos", jsonArray);
+        System.out.println(jsonresult.toString());
+        return jsonresult;
+    }
     @RequestMapping("/query")
     @ResponseBody
     public JSONObject queryAmount(HttpServletRequest request) throws ParseException {
-        String begintime = request.getParameter("start_date").replaceAll("-", "");
-        String endtime = request.getParameter("end_date").replaceAll("-", "");
+        String begintime = request.getParameter("start_date");
+        String endtime = request.getParameter("end_date");
+        JSONObject jsonResult = new JSONObject();
 
         String username = (String) request.getSession().getAttribute("username");
         System.out.println(username);
@@ -117,7 +233,60 @@ public class adminAction {
             String splist = user.getSplist();
             String[] sp_list = splist.split(",");
             System.out.println(sp_list);
-
+            if (user.getPrivilege().equals("3")) {
+                JSONArray jsonArrayRing = new JSONArray();
+                List<CrSubscribe> crSubscribeList = crSubscribeService.getSubscribeinGivenTime(begintime, endtime);
+                List<crResult> crResultList = new ArrayList<crResult>();
+                Map<String, crResult> stringcrResultMap = new HashMap<String, crResult>();
+                for (CrSubscribe item:crSubscribeList) {
+                    crResult crResult_t = null;
+                    if (stringcrResultMap.containsKey(item.getRingid())) {
+                        crResult_t = stringcrResultMap.get(item.getRingid());
+                    }
+                    else {
+                        crResult_t = new crResult(item.getRingid(),item.getRingname(),item.getCpid(),item.getCpname());
+                    }
+                    //订购
+                    if (item.getDowntime().compareTo(begintime) >= 0 && item.getDowntime().compareTo(endtime) <0) {
+                        crResult_t.setGivenorderamount(crResult_t.getGivenorderamount() + 1);
+                    }
+                    //退订
+                    if (item.getModdate() != null && item.getModdate().compareTo(begintime) >= 0 && item.getModdate().compareTo(endtime) < 0) {
+                        crResult_t.setGivencancelamount(crResult_t.getGivencancelamount() + 1);
+                    }
+                    stringcrResultMap.put(item.getRingid(),crResult_t);
+                }
+                for(Map.Entry<String, crResult> entry:stringcrResultMap.entrySet()) {
+                    crResult cr = entry.getValue();
+                    int totalCount = crRingService.getCountByRingid(cr.getRingid());
+                    if (totalCount ==0) {
+                        System.out.println(cr.getRingid());
+                    }
+                    cr.setTotalamount(totalCount);
+                    crResultList.add(cr);
+                }
+                Collections.sort(crResultList, new Comparator<crResult>() {
+                    public int compare(crResult arg0, crResult arg1) {
+                        return arg1.getGivenorderamount()-(arg0.getGivenorderamount());
+                    }
+                });
+                for (crResult item:crResultList) {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("ringid", item.getRingid());
+                    jsonObject.put("ringname", item.getRingname());
+                    jsonObject.put("cpid", item.getCpid());
+                    jsonObject.put("cpname", item.getCpname());
+                    jsonObject.put("givenorderamount", item.getGivenorderamount());
+                    jsonObject.put("givencancelamount", item.getGivencancelamount());
+                    jsonObject.put("totalamount",item.getTotalamount());
+                    jsonArrayRing.add(jsonObject);
+                }
+                jsonResult.put("ringinfos", jsonArrayRing);
+                return jsonResult;
+            }
+            begintime = begintime.replaceAll("[-\\s:]", "");
+            endtime = endtime.replaceAll("[-\\s:]","");
+            System.out.println(begintime);
             for (String item : sp_list) {
                 //productid
                 if (item.length() == 21) {
@@ -239,7 +408,7 @@ public class adminAction {
             //model.addAttribute("spinfos", spResultList);
             //model.addAttribute("productinfos", productResultList);
             System.out.println(spResultList);
-            JSONObject jsonResult = new JSONObject();
+
             JSONArray jsonArraySp = new JSONArray();
             JSONArray jsonArrayProduct = new JSONArray();
             for (spResult sr:spResultList) {

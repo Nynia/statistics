@@ -35,6 +35,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="javax.servlet-api-3.0.1" level="project" />
+    <orderEntry type="library" name="commons-discovery-0.2" level="project" />
+    <orderEntry type="library" name="saaj" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.2.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.2.1.RELEASE" level="project" />
@@ -81,9 +84,7 @@
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.3" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
     <orderEntry type="library" name="Maven: jstl:jstl:1.2" level="project" />
-    <orderEntry type="library" name="Maven: net.sf.json-lib:json-lib:2.4" level="project" />
-    <orderEntry type="library" name="javax.servlet-api-3.0.1" level="project" />
-    <orderEntry type="library" name="commons-discovery-0.2" level="project" />
-    <orderEntry type="library" name="saaj" level="project" />
+    <orderEntry type="library" name="jconn3" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.6" level="project" />
   </component>
 </module>

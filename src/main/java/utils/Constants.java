@@ -9,6 +9,7 @@ import java.util.Map;
 public class Constants {
     public final static String DeviceID = "021155";
     public final static Map<String, String> resultCodeMap = new HashMap<String, String>();
+    public final static Map<String, String> channelMap = new HashMap<String, String>();
     static {
         resultCodeMap.put("0", "成功");
         resultCodeMap.put("103", "用户号码非法");
@@ -36,6 +37,12 @@ public class Constants {
         resultCodeMap.put("159", "获取号码失败");
         resultCodeMap.put("160", "产品ID未登记");
         resultCodeMap.put("999", "其他");
+
+        //channelMap
+        channelMap.put("5","爱音乐");
+        channelMap.put("6","欣网");
+        channelMap.put("35","vsop");
+        channelMap.put("95","批操作");
     }
 }
 
