@@ -313,6 +313,7 @@
                     if ($(this).is('[id]')) {
                         //alert($(this).text());
                         $(this).click(function () {
+                            ringid = $(this).text();
                             $.ajax({
                                 type: "GET",
                                 url: "ringDetail.do",
@@ -324,6 +325,7 @@
                                 success: function (msg) {
                                     //alert(msg);
                                     $('#givenringdetail').empty();
+                                    $('#givenringdetail').append("<caption>" + ringid+"</caption>");
                                     $('#givenringdetail').append("<tr>" +
                                             "<td>渠道</td>" +
                                             "<td>全省</td>" +
