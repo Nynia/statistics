@@ -94,15 +94,27 @@
                     id="week_begin_time"><%=firstDayofWeek%></span> — <span id="week_end_time"><%=today%></span></div>
             <table class="table table-bordered">
                 <tr>
-                    <td>铃音编码</td>
-                    <td>名称</td>
-                    <td>CP编码</td>
-                    <td>CP名称</td>
-                    <td>新增数量</td>
-                    <td>退订数量</td>
-                    <td>到达数</td>
+                    <th>铃音编码</th>
+                    <th>名称</th>
+                    <th>CP编码</th>
+                    <th>CP名称</th>
+                    <th>新增数量</th>
+                    <th>退订数量</th>
+                    <th>到达数</th>
                 </tr>
                 <c:forEach items="${weeklycrResult}" var="weeklyinfo" begin="0" end="9">
+                    <tr>
+                        <td id="a${weeklyinfo.ringid}"><a style="text-decoration:none;">${weeklyinfo.ringid}</a></td>
+                        <td>${weeklyinfo.ringname}</td>
+                        <td>${weeklyinfo.cpid}</td>
+                        <td>${weeklyinfo.cpname}</td>
+                        <td>${weeklyinfo.weeklyorderamount}</td>
+                        <td>${weeklyinfo.weeklycancelamount}</td>
+                        <td>${weeklyinfo.totalamount}</td>
+                    </tr>
+                </c:forEach>
+                <td>自营音乐包</td>
+                <c:forEach items="${weeklycrResult}" var="weeklyinfo" begin="10">
                     <tr>
                         <td id="a${weeklyinfo.ringid}"><a style="text-decoration:none;">${weeklyinfo.ringid}</a></td>
                         <td>${weeklyinfo.ringname}</td>
@@ -125,15 +137,37 @@
             </div>
             <table class="table table-bordered">
                 <tr>
-                    <td>铃音编码</td>
-                    <td>名称</td>
-                    <td>CP编码</td>
-                    <td>CP名称</td>
-                    <td>新增数量</td>
-                    <td>退订数量</td>
-                    <td>到达数</td>
+                    <th>铃音编码</th>
+                    <th>名称</th>
+                    <th>CP编码</th>
+                    <th>CP名称</th>
+                    <th>新增数量</th>
+                    <th>退订数量</th>
+                    <th>到达数</th>
                 </tr>
                 <c:forEach items="${monthlycrResult}" var="monthlyinfo" begin="0" end="9">
+                    <tr>
+                        <td id="b${monthlyinfo.ringid}"><a style="text-decoration:none;">${monthlyinfo.ringid}</a></td>
+                        <td>${monthlyinfo.ringname}</td>
+                        <td>${monthlyinfo.cpid}</td>
+                        <td>${monthlyinfo.cpname}</td>
+                        <td>${monthlyinfo.monthlyorderamount}</td>
+                        <td>${monthlyinfo.monthlycancelamount}</td>
+                        <td>${monthlyinfo.totalamount}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+            <table class="table table-bordered">
+                <tr>
+                    <th>铃音编码</th>
+                    <th>名称</th>
+                    <th>CP编码</th>
+                    <th>CP名称</th>
+                    <th>新增数量</th>
+                    <th>退订数量</th>
+                    <th>到达数</th>
+                </tr>
+                <c:forEach items="${monthlycrResult}" var="monthlyinfo" begin="10">
                     <tr>
                         <td id="b${monthlyinfo.ringid}"><a style="text-decoration:none;">${monthlyinfo.ringid}</a></td>
                         <td>${monthlyinfo.ringname}</td>
@@ -211,7 +245,6 @@
                                 //alert(msg);
                                 tag.empty();
                                 tag.append("<caption>" + ringid+"</caption>");
-
                                 tag.append("<tr>" +
                                         "<td>渠道</td>" +
                                         "<td>全省</td>" +
@@ -253,7 +286,7 @@
                                             "</tr>"
                                     );
                                 });
-
+                                $(document).scrollTop(1000);
                             }
                         });
                     });
@@ -311,7 +344,6 @@
                 });
                 $("#ringtable td").each(function (){
                     if ($(this).is('[id]')) {
-                        //alert($(this).text());
                         $(this).click(function () {
                             ringid = $(this).text();
                             $.ajax({
@@ -367,7 +399,7 @@
                                                 "</tr>"
                                         );
                                     });
-
+                                    $(document).scrollTop(1000);
                                 }
                             });
                         });

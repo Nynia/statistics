@@ -1,6 +1,8 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -10,6 +12,9 @@ public class Constants {
     public final static String DeviceID = "021155";
     public final static Map<String, String> resultCodeMap = new HashMap<String, String>();
     public final static Map<String, String> channelMap = new HashMap<String, String>();
+    public final static Map<String, String> selfMusicProductMap = new HashMap<String, String>();
+    public final static Map<String, String> ringCpMap = new HashMap<String, String>();
+    public final static Map<String, String> cpMap = new HashMap<String, String>();
     static {
         resultCodeMap.put("0", "成功");
         resultCodeMap.put("103", "用户号码非法");
@@ -43,6 +48,34 @@ public class Constants {
         channelMap.put("6","欣网");
         channelMap.put("35","vsop");
         channelMap.put("95","批操作");
+
+        selfMusicProductMap.put("8203001387", "彩铃管家个人版");
+        selfMusicProductMap.put("8209001391", "彩铃管家-讯飞版8元");
+        selfMusicProductMap.put("8203001383", "彩铃管家10元档");
+        selfMusicProductMap.put("8203001380", "彩铃管家15元档");
+        selfMusicProductMap.put("8209001392", "彩铃管家-讯飞版15元");
+        selfMusicProductMap.put("8203001381", "彩铃管家25元档");
+        selfMusicProductMap.put("8203001382", "彩铃管家35元档");
+        selfMusicProductMap.put("8208001388", " 明星播报");
+        selfMusicProductMap.put("8208001393", "明星播报默认铃音盒");
+        selfMusicProductMap.put("8208001390", "明星播报8元版");
+        selfMusicProductMap.put("8208001389", "明星播报15元版");
+
+        ringCpMap.put("8203001387", "8203");
+        ringCpMap.put("8209001391", "8209");
+        ringCpMap.put("8203001383", "8203");
+        ringCpMap.put("8203001380", "8203");
+        ringCpMap.put("8209001392", "8209");
+        ringCpMap.put("8203001381", "8203");
+        ringCpMap.put("8203001382", "8203");
+        ringCpMap.put("8208001388", "8208");
+        ringCpMap.put("8208001393", "8208");
+        ringCpMap.put("8208001390", "8208");
+        ringCpMap.put("8208001389", "8208");
+
+        cpMap.put("8203", "汇龙");
+        cpMap.put("8209", "科大");
+        cpMap.put("8208", "杰度");
     }
 }
 
