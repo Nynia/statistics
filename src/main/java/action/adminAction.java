@@ -18,6 +18,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static utils.Constants.cpMap;
+import static utils.Constants.ringCpMap;
+import static utils.Constants.selfMusicProductMap;
+
 /**
  * Created by Ridiculous on 2016/6/2.
  */
@@ -255,6 +259,14 @@ public class adminAction {
                         crResult_t.setGivencancelamount(crResult_t.getGivencancelamount() + 1);
                     }
                     stringcrResultMap.put(item.getRingid(),crResult_t);
+                }
+                for(Map.Entry<String, String> entry: selfMusicProductMap.entrySet()) {
+                    String ringid = entry.getKey();
+                    String ringname = entry.getValue();
+                    if (!stringcrResultMap.containsKey(ringid)) {
+                        crResult crResult_t = new crResult(ringid,ringname,ringCpMap.get(ringid),cpMap.get(ringCpMap.get(ringid)));
+                        stringcrResultMap.put(ringid,crResult_t);
+                    }
                 }
                 for(Map.Entry<String, crResult> entry:stringcrResultMap.entrySet()) {
                     crResult cr = entry.getValue();

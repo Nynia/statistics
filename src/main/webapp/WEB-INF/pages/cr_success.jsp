@@ -156,17 +156,7 @@
                         <td>${monthlyinfo.totalamount}</td>
                     </tr>
                 </c:forEach>
-            </table>
-            <table class="table table-bordered">
-                <tr>
-                    <th>铃音编码</th>
-                    <th>名称</th>
-                    <th>CP编码</th>
-                    <th>CP名称</th>
-                    <th>新增数量</th>
-                    <th>退订数量</th>
-                    <th>到达数</th>
-                </tr>
+                <td>自营音乐包</td>
                 <c:forEach items="${monthlycrResult}" var="monthlyinfo" begin="10">
                     <tr>
                         <td id="b${monthlyinfo.ringid}"><a style="text-decoration:none;">${monthlyinfo.ringid}</a></td>
@@ -315,20 +305,23 @@
                 $('#customdate').text(start_date + '—' + end_date);
                 $('#ringtable').empty();
                 $('#ringtable').append("<tr>" +
-                        "<td>铃音编码</td>" +
-                        "<td>名称</td>" +
-                        "<td>CP编码</td>" +
-                        "<td>CP名称</td>" +
-                        "<td>新增数量</td>" +
-                        "<td>退订数量</td>" +
-                        "<td>到达数</td>" +
+                        "<th>铃音编码</th>" +
+                        "<th>名称</th>" +
+                        "<th>CP编码</th>" +
+                        "<th>CP名称</th>" +
+                        "<th>新增数量</th>" +
+                        "<th>退订数量</th>" +
+                        "<th>到达数</th>" +
                         "</tr>"
                 );
                 var jsonresult = $.parseJSON(msg);
                 var jsonarraysp = jsonresult.ringinfos;
                 //jsonarrayproduct.sort(function(x, y) {return y['totaluser'] - x['totaluser']})
+                var top = 0;
                 $.each(jsonarraysp, function (idx, item) {
-                    if (idx < 10) {
+                    if (top < 10 && item.ringid.indexOf('810') == 0
+                    && item.ringid != '810099991095'
+                    && item.ringid != '810099990490')  {
                         $('#ringtable').append("<tr>" +
                                 "<td id=\"" + item.ringid + "\">" + "<a style=\"text-decoration:none;\">" + item.ringid + "</td>" +
                                 "<td>" + item.ringname + "</td>" +
@@ -339,7 +332,24 @@
                                 "<td>" + item.totalamount + "</td>" +
                                 "</tr>"
                         );
-                        $('#ringtable ')
+                        top += 1;
+                    }
+                });
+                $('#ringtable').append("<tr><td>自营音乐包</td></tr>");
+                $.each(jsonarraysp, function (idx, item) {
+                    if (item.ringid.indexOf('820') == 0
+                    || item.ringid == '810099991095'
+                    || item.ringid == '810099990490') {
+                        $('#ringtable').append("<tr>" +
+                                "<td id=\"" + item.ringid + "\">" + "<a style=\"text-decoration:none;\">" + item.ringid + "</td>" +
+                                "<td>" + item.ringname + "</td>" +
+                                "<td>" + item.cpid + "</td>" +
+                                "<td>" + item.cpname + "</td>" +
+                                "<td>" + item.givenorderamount + "</td>" +
+                                "<td>" + item.givencancelamount + "</td>" +
+                                "<td>" + item.totalamount + "</td>" +
+                                "</tr>"
+                        );
                     }
                 });
                 $("#ringtable td").each(function (){
