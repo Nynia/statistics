@@ -18,15 +18,10 @@
     String today = sdf.format(cal.getTime());
     String firstDayofWeek = null;
 
-    if (cal.get(Calendar.DAY_OF_WEEK) <= 5) {
-        cal.add(Calendar.DATE, -7);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-        firstDayofWeek = sdf.format(cal.getTime());
-        cal.add(Calendar.DATE, 7);
-    } else {
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-        firstDayofWeek = sdf.format(cal.getTime());
-    }
+    cal.add(Calendar.DATE, -7);
+    cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+    firstDayofWeek = sdf.format(cal.getTime());
+    cal.add(Calendar.DATE, 7);
 
     cal = Calendar.getInstance();
     cal.set(Calendar.DAY_OF_MONTH, 1);//设置为1号,当前日期既为本月第一天

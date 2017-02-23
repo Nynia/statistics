@@ -18,15 +18,10 @@
     String today = sdf.format(cal.getTime());
     String firstDayofWeek = null;
 
-    if (cal.get(Calendar.DAY_OF_WEEK) <= 5) {
-        cal.add(Calendar.DATE, -7);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-        firstDayofWeek = sdf.format(cal.getTime());
-        cal.add(Calendar.DATE, 7);
-    } else {
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-        firstDayofWeek = sdf.format(cal.getTime());
-    }
+    cal.add(Calendar.DATE, -7);
+    cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+    firstDayofWeek = sdf.format(cal.getTime());
+    cal.add(Calendar.DATE, 7);
 
     cal = Calendar.getInstance();
     cal.set(Calendar.DAY_OF_MONTH, 1);//设置为1号,当前日期既为本月第一天
@@ -50,14 +45,14 @@
     var curDate = new Date();
     var hours = curDate.getHours();
     var miniutes = curDate.getMinutes();
-    if (Number(hours) == 9 && Number(miniutes) < 15 ) {
-       alert('后台正在同步数据，请10分钟之后再查询');
+    if (Number(hours) == 9 && Number(miniutes) < 20 ) {
+       alert('后台正在同步数据，请15分钟之后再查询');
+        window.history.back(-1);
     }
-    window.history.back(-1);
 </script>
 <div class="container">
     <div class="form-group">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <ul id="myTab" class="nav nav-tabs">
                 <li class="active">
                     <a href="#weekly" data-toggle="tab">
@@ -74,9 +69,14 @@
                         自定义
                     </a>
                 </li>
+                <li>
+                    <a href="#rank" data-toggle="tab">
+                        排行
+                    </a>
+                </li>
             </ul>
         </div>
-        <div class="col-md-8" id="displsydiv">
+        <div class="col-md-7" id="displsydiv">
             <div class="form-group">
                 <div class="fixedheight col-md-1">开始</div>
                 <div class="input-group date form_date col-md-4" data-date="" data-date-format="yyyy-MM-dd"
@@ -220,6 +220,45 @@
 
             </table>
         </div>
+        <c:if test = "${not empty weeklytopinfos}">
+            <div class="tab-pane fade" id="rank">
+                <table class="table table-bordered" id="ranktable1">
+                    <caption>周排行</caption>
+                    <tr>
+                        <th>排行</th>
+                        <th>SP</th>
+                        <th>SP名称</th>
+                        <th>新增数</th>
+                    </tr>
+                    <c:forEach items="${weeklytopinfos}" var="topinfo" begin="0" end="9" varStatus="xh">
+                        <tr>
+                            <td>${xh.count}</td>
+                            <td>${topinfo.spid}</td>
+                            <td>${topinfo.spname}</td>
+                            <td>${topinfo.count}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+                <table class="table table-bordered" id="ranktable2">
+                    <caption>月排行</caption>
+                    <tr>
+                        <th>排行</th>
+                        <th>SP</th>
+                        <th>SP名称</th>
+                        <th>新增数</th>
+                    </tr>
+                    <c:forEach items="${monthlytopinfos}" var="topinfo" begin="0" end="9" varStatus="xh">
+                        <tr>
+                            <td>${xh.count}</td>
+                            <td>${topinfo.spid}</td>
+                            <td>${topinfo.spname}</td>
+                            <td>${topinfo.count}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </c:if>
+
     </div>
 </div>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery-1.8.3.min.js" charset="UTF-8"></script>

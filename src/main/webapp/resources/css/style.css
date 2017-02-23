@@ -10,7 +10,7 @@
     padding:6px 0;
 }
 .container {
-    width:900px;
+    width:1100px;
 }
 .input-group {
     padding:0 30px 0 0;
@@ -23,4 +23,8 @@
     line-height: normal;
     font-weight: normal;
     font-size: medium;
+}
+#dateradio {
+    margin-top:60px;
+    margin-bottom:10px;
 }
