@@ -48,6 +48,8 @@ public class Constants {
         channelMap.put("6","欣网");
         channelMap.put("35","vsop");
         channelMap.put("95","批操作");
+        channelMap.put("0","SP");
+        channelMap.put("38","SP");
 
         selfMusicProductMap.put("8203001387", "彩铃管家个人版");
         selfMusicProductMap.put("8209001391", "彩铃管家-讯飞版8元");
@@ -56,10 +58,15 @@ public class Constants {
         selfMusicProductMap.put("8209001392", "彩铃管家-讯飞版15元");
         selfMusicProductMap.put("8203001381", "彩铃管家25元档");
         selfMusicProductMap.put("8203001382", "彩铃管家35元档");
-        selfMusicProductMap.put("8208001388", " 明星播报");
+        selfMusicProductMap.put("8208001388", "明星播报");
         selfMusicProductMap.put("8208001393", "明星播报默认铃音盒");
         selfMusicProductMap.put("8208001390", "明星播报8元版");
         selfMusicProductMap.put("8208001389", "明星播报15元版");
+        selfMusicProductMap.put("810099991095", "潮流快递特惠铃音盒");
+        selfMusicProductMap.put("810099990489", "最江南铃音盒");
+        selfMusicProductMap.put("810099990490", "潮流快递铃音盒");
+        selfMusicProductMap.put("8210001395", "一起秀铃音盒");
+        selfMusicProductMap.put("8210001394", "翼企秀铃音盒");
 
         ringCpMap.put("8203001387", "8203");
         ringCpMap.put("8209001391", "8209");
@@ -72,10 +79,19 @@ public class Constants {
         ringCpMap.put("8208001393", "8208");
         ringCpMap.put("8208001390", "8208");
         ringCpMap.put("8208001389", "8208");
+        ringCpMap.put("810099991095", "2062");
+        ringCpMap.put("810099990489", "2062");
+        ringCpMap.put("810099990490", "2062");
+        ringCpMap.put("8210001395", "8210");
+        ringCpMap.put("8210001394", "8210");
 
         cpMap.put("8203", "汇龙");
         cpMap.put("8209", "科大");
         cpMap.put("8208", "杰度");
+        cpMap.put("2062", "江苏公信");
+        cpMap.put("8210", "海春轩");
+        cpMap.put("8702", "音信通");
+        cpMap.put("8703", "企业管家");
     }
 }
 

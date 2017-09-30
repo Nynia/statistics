@@ -42,13 +42,13 @@ public class adminAction {
     @Resource
     private CrRingService crRingService;
 
-    @RequestMapping("/home")
-    @ResponseBody
-    public ModelAndView home(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView();
-        view.setViewName("home");
-        return view;
-    }
+//    @RequestMapping("/home")
+//    @ResponseBody
+//    public ModelAndView home(HttpServletRequest request) {
+//        ModelAndView view = new ModelAndView();
+//        view.setViewName("home");
+//        return view;
+//    }
 
     @RequestMapping(value = "/productDetail/{productid}")
 
@@ -261,14 +261,14 @@ public class adminAction {
                     }
                     stringcrResultMap.put(item.getRingid(), crResult_t);
                 }
-                for (Map.Entry<String, String> entry : selfMusicProductMap.entrySet()) {
-                    String ringid = entry.getKey();
-                    String ringname = entry.getValue();
-                    if (!stringcrResultMap.containsKey(ringid)) {
-                        crResult crResult_t = new crResult(ringid, ringname, ringCpMap.get(ringid), cpMap.get(ringCpMap.get(ringid)));
-                        stringcrResultMap.put(ringid, crResult_t);
-                    }
-                }
+//                for (Map.Entry<String, String> entry : selfMusicProductMap.entrySet()) {
+//                    String ringid = entry.getKey();
+//                    String ringname = entry.getValue();
+//                    if (!stringcrResultMap.containsKey(ringid)) {
+//                        crResult crResult_t = new crResult(ringid, ringname, ringCpMap.get(ringid), cpMap.get(ringCpMap.get(ringid)));
+//                        stringcrResultMap.put(ringid, crResult_t);
+//                    }
+//                }
                 for (Map.Entry<String, crResult> entry : stringcrResultMap.entrySet()) {
                     crResult cr = entry.getValue();
                     int totalCount = crRingService.getCountByRingid(cr.getRingid());
@@ -283,7 +283,31 @@ public class adminAction {
                         return arg1.getGivenorderamount() - (arg0.getGivenorderamount());
                     }
                 });
-                for (crResult item : crResultList) {
+                List<crResult> selflist = new ArrayList<crResult>();
+                List<crResult> setlist = new ArrayList<crResult>();
+                List<crResult> givenlist = new ArrayList<crResult>();
+                int num = 0;
+                for (int i = 0; i < crResultList.size(); i++) {
+                    crResult item = crResultList.get(i);
+                    //两个潮流快递产品和自营820产品
+                    if (item.getRingid().startsWith("820") ||
+                            item.getRingid().equals("810099991095") ||
+                            item.getRingid().equals("810099990489") ||
+                            item.getRingid().equals("810099990490") ||
+                            item.getRingid().startsWith("821")){
+                        selflist.add(item);
+                    } else if (item.getCpid().startsWith("87")){
+                        setlist.add(item);
+                    } else {
+                        if (num < 10) {
+                            givenlist.add(item);
+                            num++;
+                        }
+                    }
+                }
+                givenlist.addAll(selflist);
+                givenlist.addAll(setlist);
+                for (crResult item : givenlist) {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("ringid", item.getRingid());
                     jsonObject.put("ringname", item.getRingname());

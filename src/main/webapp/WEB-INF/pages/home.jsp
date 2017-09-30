@@ -17,7 +17,7 @@
     <title>Home</title>
     <link href="<%=path%>/resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="<%=path%>/resources/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-    <link href="<%=path%>/resources/css/style.css", rel="stylesheet">
+    <link href="<%=path%>/resources/css/style.css" rel="stylesheet">
 </head>
 
 <body>

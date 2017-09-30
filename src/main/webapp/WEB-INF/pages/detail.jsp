@@ -16,7 +16,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Detail</title>
+    <title>业务统计系统-详细</title>
     <link href="<%=path%>/resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="<%=path%>/resources/css/style.css" , rel="stylesheet">
     <script type="text/javascript" src="<%=path%>/resources/js/jquery-1.8.3.min.js"></script>

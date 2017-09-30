@@ -16,8 +16,11 @@
     Calendar cal = Calendar.getInstance();//获取当前日期
     //cal.add(Calendar.DATE, 8);
     String today = sdf.format(cal.getTime());
+    cal.add(Calendar.DATE, -1);
+    String yestoday = sdf.format(cal.getTime());
     String firstDayofWeek = null;
 
+    cal = Calendar.getInstance();
     cal.add(Calendar.DATE, -7);
     cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
     firstDayofWeek = sdf.format(cal.getTime());
@@ -34,7 +37,7 @@
 <html>
 <head>
     <meta http-equiv=”Content-Type” content=”text/html; charset=utf-8″>
-    <title>Success</title>
+    <title>业务统计系统-ISMP</title>
     <link href="<%=path%>/resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="<%=path%>/resources/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <link href="<%=path%>/resources/css/bootstrap-select.min.css" rel="stylesheet" media="screen">
@@ -46,7 +49,7 @@
     var hours = curDate.getHours();
     var miniutes = curDate.getMinutes();
     if (Number(hours) == 9 && Number(miniutes) < 20 ) {
-       alert('后台正在同步数据，请15分钟之后再查询');
+       alert('后台正在同步数据，请20分钟之后再查询');
         window.history.back(-1);
     }
 </script>
@@ -220,17 +223,19 @@
 
             </table>
         </div>
-        <c:if test = "${not empty weeklytopinfos}">
+        <c:if test = "${not empty rankflag}">
             <div class="tab-pane fade" id="rank">
+                <div style="font-size: medium;font-weight:bold;margin-top:52px;margin-bottom: 10px;"><%=yestoday%>
+                </div>
                 <table class="table table-bordered" id="ranktable1">
-                    <caption>周排行</caption>
+                    <caption>点播排行</caption>
                     <tr>
                         <th>排行</th>
                         <th>SP</th>
                         <th>SP名称</th>
                         <th>新增数</th>
                     </tr>
-                    <c:forEach items="${weeklytopinfos}" var="topinfo" begin="0" end="9" varStatus="xh">
+                    <c:forEach items="${timelytopinfos}" var="topinfo" begin="0" end="19" varStatus="xh">
                         <tr>
                             <td>${xh.count}</td>
                             <td>${topinfo.spid}</td>
@@ -239,15 +244,17 @@
                         </tr>
                     </c:forEach>
                 </table>
+                <div style="font-size: medium;font-weight:bold;margin-top:52px;margin-bottom: 10px;"><%=yestoday%>
+                </div>
                 <table class="table table-bordered" id="ranktable2">
-                    <caption>月排行</caption>
+                    <caption>包月排行</caption>
                     <tr>
                         <th>排行</th>
                         <th>SP</th>
                         <th>SP名称</th>
                         <th>新增数</th>
                     </tr>
-                    <c:forEach items="${monthlytopinfos}" var="topinfo" begin="0" end="9" varStatus="xh">
+                    <c:forEach items="${monthlytopinfos}" var="topinfo" begin="0" end="19" varStatus="xh">
                         <tr>
                             <td>${xh.count}</td>
                             <td>${topinfo.spid}</td>

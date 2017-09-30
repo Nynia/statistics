@@ -34,7 +34,7 @@
 <html>
 <head>
     <meta http-equiv=”Content-Type” content=”text/html; charset=utf-8″>
-    <title>Success</title>
+    <title>业务统计系统-彩铃</title>
     <link href="<%=path%>/resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="<%=path%>/resources/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <link href="<%=path%>/resources/css/style.css" , rel="stylesheet">
@@ -312,11 +312,8 @@
                 var jsonresult = $.parseJSON(msg);
                 var jsonarraysp = jsonresult.ringinfos;
                 //jsonarrayproduct.sort(function(x, y) {return y['totaluser'] - x['totaluser']})
-                var top = 0;
                 $.each(jsonarraysp, function (idx, item) {
-                    if (top < 10 && item.ringid.indexOf('810') == 0
-                    && item.ringid != '810099991095'
-                    && item.ringid != '810099990490')  {
+                    if (idx < 10 )  {
                         $('#ringtable').append("<tr>" +
                                 "<td id=\"" + item.ringid + "\">" + "<a style=\"text-decoration:none;\">" + item.ringid + "</td>" +
                                 "<td>" + item.ringname + "</td>" +
@@ -327,14 +324,11 @@
                                 "<td>" + item.totalamount + "</td>" +
                                 "</tr>"
                         );
-                        top += 1;
                     }
                 });
                 $('#ringtable').append("<tr><td>自营音乐包</td></tr>");
                 $.each(jsonarraysp, function (idx, item) {
-                    if (item.ringid.indexOf('820') == 0
-                    || item.ringid == '810099991095'
-                    || item.ringid == '810099990490') {
+                    if (idx >= 10) {
                         $('#ringtable').append("<tr>" +
                                 "<td id=\"" + item.ringid + "\">" + "<a style=\"text-decoration:none;\">" + item.ringid + "</td>" +
                                 "<td>" + item.ringname + "</td>" +
